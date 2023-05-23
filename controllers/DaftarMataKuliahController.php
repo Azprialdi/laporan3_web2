@@ -1,6 +1,8 @@
 <?php
 
 namespace app\controllers;
+use app\models\Mahasiswa;
+use yii\data\ActiveDataProvider;
 
 class DaftarMataKuliahController extends \yii\web\Controller
 {
@@ -11,7 +13,12 @@ class DaftarMataKuliahController extends \yii\web\Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $dataProvider = new ActiveDataProvider([
+            'query' => Mahasiswa::find()
+        ]);
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionUpdate()
